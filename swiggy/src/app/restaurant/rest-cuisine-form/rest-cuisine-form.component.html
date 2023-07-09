@@ -1,0 +1,186 @@
+<form
+  [formGroup]="CuisineForm"
+  (ngSubmit)="CusineFormSubmit()"
+  class="form-500"
+>
+  <input
+    type="text"
+    placeholder="Cuisine Name*"
+    class="form-inp"
+    [class.error]="
+      CuisineForm.controls['cuisine'].invalid &&
+      (CuisineForm.controls['cuisine'].dirty ||
+        CuisineForm.controls['cuisine'].touched)
+    "
+    formControlName="cuisine"
+  />
+  <ng-container
+    *ngIf="
+      CuisineForm.controls['cuisine'].invalid &&
+      (CuisineForm.controls['cuisine'].dirty ||
+        CuisineForm.controls['cuisine'].touched)
+    "
+  >
+    <div
+      class="inp-error"
+      *ngIf="CuisineForm.controls['cuisine'].errors?.['required']"
+    >
+      Cuisine name is required.
+    </div>
+  </ng-container>
+
+  <input
+    type="text"
+    placeholder="Description*"
+    class="form-inp"
+    [class.error]="
+      CuisineForm.controls['description'].invalid &&
+      (CuisineForm.controls['description'].dirty ||
+        CuisineForm.controls['description'].touched)
+    "
+    formControlName="description"
+  />
+  <ng-container
+    *ngIf="
+      CuisineForm.controls['description'].invalid &&
+      (CuisineForm.controls['description'].dirty ||
+        CuisineForm.controls['description'].touched)
+    "
+  >
+    <div
+      class="inp-error"
+      *ngIf="CuisineForm.controls['description'].errors?.['required']"
+    >
+      Description is required.
+    </div>
+  </ng-container>
+
+  <input
+    type="file"
+    class="img-inp"
+    [class.error]="
+      CuisineForm.controls['image'].invalid &&
+      (CuisineForm.controls['image'].dirty ||
+        CuisineForm.controls['image'].touched)
+    "
+    formControlName="image"
+    (change)="onCuisneFileChange($event)"
+  />
+  <div class="suggestion">Cuisine Image</div>
+  <ng-container
+    *ngIf="
+      CuisineForm.controls['image'].invalid &&
+      (CuisineForm.controls['image'].dirty ||
+        CuisineForm.controls['image'].touched)
+    "
+  >
+    <div
+      class="inp-error"
+      *ngIf="CuisineForm.controls['image'].errors?.['required']"
+    >
+      Cuisine Image is required.
+    </div>
+  </ng-container>
+
+  <div class="radio-groups">
+    <div class="radio-inputs">
+      <label>Veg</label>
+      <input type="radio" formControlName="cuisine_type" value="Veg" />
+    </div>
+
+    <div class="radio-inputs">
+      <label>Non Veg</label>
+      <input type="radio" formControlName="cuisine_type" value="Non Veg" />
+    </div>
+  </div>
+  <ng-container
+    *ngIf="
+      CuisineForm.controls['cuisine_type'].invalid &&
+      (CuisineForm.controls['cuisine_type'].dirty ||
+        CuisineForm.controls['cuisine_type'].touched)
+    "
+  >
+    <div
+      class="inp-error"
+      *ngIf="CuisineForm.controls['cuisine_type'].errors?.['required']"
+    >
+      Cuisine type is required.
+    </div>
+  </ng-container>
+
+  <input
+    type="number"
+    placeholder="Price*"
+    class="form-inp"
+    [class.error]="
+      CuisineForm.controls['price'].invalid &&
+      (CuisineForm.controls['price'].dirty ||
+        CuisineForm.controls['price'].touched)
+    "
+    formControlName="price"
+  />
+  <ng-container
+    *ngIf="
+      CuisineForm.controls['price'].invalid &&
+      (CuisineForm.controls['price'].dirty ||
+        CuisineForm.controls['price'].touched)
+    "
+  >
+    <div
+      class="inp-error"
+      *ngIf="CuisineForm.controls['price'].errors?.['required']"
+    >
+      Price is required.
+    </div>
+    <div
+      class="inp-error"
+      *ngIf="CuisineForm.controls['price'].errors?.['min']"
+    >
+      Minimum &#8377;10
+    </div>
+  </ng-container>
+
+  <input
+    type="number"
+    placeholder="Stocks*"
+    class="form-inp"
+    [class.error]="
+      CuisineForm.controls['stocks'].invalid &&
+      (CuisineForm.controls['stocks'].dirty ||
+        CuisineForm.controls['stocks'].touched)
+    "
+    formControlName="stocks"
+  />
+  <ng-container
+    *ngIf="
+      CuisineForm.controls['stocks'].invalid &&
+      (CuisineForm.controls['stocks'].dirty ||
+        CuisineForm.controls['stocks'].touched)
+    "
+  >
+    <div
+      class="inp-error"
+      *ngIf="CuisineForm.controls['stocks'].errors?.['required']"
+    >
+      Stock is required.
+    </div>
+    <div
+      class="inp-error"
+      *ngIf="CuisineForm.controls['stocks'].errors?.['min']"
+    >
+      Minimum 5 stocks.
+    </div>
+  </ng-container>
+
+  <button type="submit" class="btn-accent" [disabled]="!CuisineForm.valid">
+    Submit
+  </button>
+
+  <div class="result" *ngIf="result">
+    {{ result }}
+  </div>
+  <div class="error-div">
+    {{ formError }}
+  </div>
+</form>
+

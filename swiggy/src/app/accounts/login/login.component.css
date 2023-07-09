@@ -1,0 +1,20 @@
+form {
+    margin-top: 4rem;
+}
+
+.or-option {
+    padding-block: 10px;
+    color: var(--text-400);
+}
+.orbtn {
+    cursor: pointer;
+    color: var(--app-accent);
+    font-weight: 600;
+    transition: var(--trans-clr);
+}
+
+@media (hover : hover) {
+    .orbtn:hover{
+        color: var(--text-400);
+    }
+}

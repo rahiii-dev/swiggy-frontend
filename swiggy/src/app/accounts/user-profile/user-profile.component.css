@@ -1,0 +1,117 @@
+.container-fluid{
+    background-color: #37718e;
+    color: white;
+    min-height: calc(100vh - 80px);
+}
+
+.container .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: 0 1.25rem;
+    padding-block: 1.25rem;
+}
+.info .name input {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+form .editable-inp {
+    border: none;
+    outline: none;
+    width: 200px;
+    white-space: pre-wrap;
+    background-color: transparent;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.editable-inp.error {
+    border-color: var(--error-bg) !important;
+}
+
+form .form-error{
+    padding-left: 0;
+}
+
+form .editable-inp:disabled {
+    border-bottom: none;
+}
+
+form input.phone {
+    width: 12ch;
+    margin-right: 10px;
+}
+
+.btns button {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid white;
+    margin-left: 10px;   
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-edit{
+    background: transparent;
+    color: white; 
+}
+
+.btn-logout {
+    background-color: white;
+    color: #37718e;
+}
+
+.container .content {
+    min-height: 80vh;
+    border-radius: 1.5rem;
+    background-color: white;
+    color: black;
+    padding: 1rem;
+}
+
+.content h2{
+    text-align: center;
+}
+
+.content .orders{
+    width: min(100%, 500px);
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.orders .order {
+    border: 2px solid var(--text-400);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.order h3 {
+    border-bottom: 2px solid var(--text-400);
+}
+
+.order .ordered_items .item{
+    padding-block: 10px;
+}
+
+.order .ordered_items .item:not(:last-child){
+    border-bottom: 2px dotted var(--text-400);
+}
+
+.order .ordered_items .item:last-child{
+    border-bottom: 2px solid var(--text-400);
+}
+
+.order .order_status{
+    color: var(--text-500);
+    padding-top: 10px;
+    font-size: 14px;
+}

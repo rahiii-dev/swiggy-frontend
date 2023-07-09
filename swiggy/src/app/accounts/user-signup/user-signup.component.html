@@ -1,0 +1,81 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+    <input type="text" 
+        placeholder="Full Name*" class="form-inp"
+        [class.error]="userForm.controls['full_name'].invalid && (userForm.controls['full_name'].dirty || userForm.controls['full_name'].touched)"
+        formControlName="full_name">
+    
+    <ng-container *ngIf="userForm.controls['full_name'].invalid && (userForm.controls['full_name'].dirty || userForm.controls['full_name'].touched)">
+        <div class="inp-error" *ngIf="userForm.controls['full_name'].errors?.['required']">
+            Full Name is required.
+        </div>
+    </ng-container>
+
+    <input type="email" 
+        placeholder="Email" class="form-inp"
+        [class.error]="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)"
+        formControlName="email">
+
+        <ng-container *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)">
+            <div class="inp-error" *ngIf="userForm.controls['email'].errors?.['email']">
+                Please enter a valid email.
+            </div>
+
+            <div class="inp-error" *ngIf="userForm.controls['email'].errors?.['EmailExists']">
+                This Email is already registered.
+            </div>
+        </ng-container>
+
+    <input type="text" 
+        placeholder="Phone Number*" class="form-inp"
+        [class.error]="userForm.controls['phone_no'].invalid && (userForm.controls['phone_no'].dirty || userForm.controls['phone_no'].touched)"
+        formControlName="phone_no">
+
+        <ng-container *ngIf="userForm.controls['phone_no'].invalid && (userForm.controls['phone_no'].dirty || userForm.controls['phone_no'].touched)">
+            <div class="inp-error" *ngIf="userForm.controls['phone_no'].errors?.['PhoneNoExists']">
+                This Phone Number is already registered.
+            </div>
+            <div class="inp-error" *ngIf="userForm.controls['phone_no'].errors?.['required']">
+                Phone Number is required.
+            </div>
+            <div class="inp-error" *ngIf="(userForm.controls['phone_no'].errors?.['minlength'] || userForm.controls['phone_no'].errors?.['maxlength'])">
+                Please enter a valid phone number.
+            </div>
+        </ng-container>
+
+    <input type="text" 
+        placeholder="UserId*" class="form-inp"
+        [class.error]="userForm.controls['userid'].invalid && (userForm.controls['userid'].dirty || userForm.controls['userid'].touched)"
+        formControlName="userid">
+
+        <ng-container *ngIf="userForm.controls['userid'].invalid && (userForm.controls['userid'].dirty || userForm.controls['userid'].touched)">
+            <div class="inp-error" *ngIf="userForm.controls['userid'].errors?.['required']">
+                UserId is required.
+            </div>
+            <div class="inp-error" *ngIf="userForm.controls['userid'].errors?.['UserIdExists']">
+                This UserId is taken.
+            </div>
+        </ng-container>
+
+    <input type="password" 
+        placeholder="password*" class="form-inp"
+        [class.error]="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)"
+        formControlName="password">
+    <!-- <div class="suggestion">
+        Minimum eight characters, at least one letter, one number and one special character
+    </div> -->
+    <ng-container *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)">
+        <div class="inp-error" *ngIf="userForm.controls['password'].errors?.['required']">
+            This field is required.
+        </div>
+        <div class="inp-error" *ngIf="userForm.controls['password'].errors?.['minlength']">
+            Minimum five charactors.
+        </div>
+    </ng-container>
+
+    <div class="form-error" *ngIf="formErrors">
+        {{ formErrors }}
+    </div>
+
+    <button type="submit" class="btn-accent" [disabled]="!userForm.valid">Continue</button>
+</form>

@@ -1,0 +1,35 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input 
+        type="text" class="form-inp" placeholder="Userid"
+        [class.error]="loginForm.controls['userid'].invalid && (loginForm.controls['userid'].dirty || loginForm.controls['userid'].touched)"
+        formControlName="userid">
+
+    <ng-container *ngIf="loginForm.controls['userid'].invalid && (loginForm.controls['userid'].dirty || loginForm.controls['userid'].touched)">
+        <div class="inp-error" *ngIf="loginForm.controls['userid'].errors?.['required']">
+            This field is required.
+        </div>
+    </ng-container>
+
+    <input 
+        type="password" class="form-inp" placeholder="Password"
+        [class.error]="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+        formControlName="password">
+
+        <ng-container *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+            <div class="inp-error" *ngIf="loginForm.controls['password'].errors?.['required']">
+                This field is required.
+            </div>
+        </ng-container>
+    
+        <div class="form-error" *ngIf="loginError">
+            {{ loginError }}
+        </div>
+
+    <button type="submit" class="btn-accent" [disabled]="!loginForm.valid">Login</button>
+    <div class="or-option" *ngIf="Guest">
+        <span>Continue as a </span>
+        <span class="orbtn" (click)="guestLogin()">Guest?</span>
+    </div>
+    
+</form>
+

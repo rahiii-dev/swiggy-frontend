@@ -1,0 +1,310 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet-draw/dist/leaflet.draw.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --app-accent: hsl(27, 97%, 54%);
+  --app-bg: hsl(0, 0%, 100%);
+
+  --secondary: hsl(0, 0%, 0%);
+
+  --text-400: hsl(229, 5%, 57%);
+  --text-500: hsl(229, 7%, 44%);
+  --text-900: hsl(229, 22%, 20%);
+
+  --error-bg: hsl(354, 94%, 63%);
+
+  --font: Arial, Helvetica, sans-serif;
+
+  --inp-bord-clr: hsl(240, 32%, 90%);
+
+  /* transition */
+  --trans-clr: color 350ms ease;
+  --trans-bg: background 350ms ease;
+  --trans-fill: fill 350ms ease;
+  --trans-op: opacity 350ms ease;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: var(--app-bg);
+  color: var(--secondary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font);
+}
+
+.bg-style-2 {
+  min-height: 100vh;
+  background-color: #e9ecee;
+}
+
+.btn-accent {
+  background-color: var(--app-accent);
+  color: var(--app-bg);
+  border: none;
+  outline: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+.btn,
+a.btn {
+  border: 0;
+  outline: 0;
+}
+
+.container {
+  width: min(100%, 1200px);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* errors */
+.error-div {
+  height: 1.5rem;
+  color: var(--error-bg);
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.hidden-lg,
+.hidden-lg-flex {
+  display: none !important;
+}
+
+.hidden-sm {
+  display: block !important;
+}
+.hidden-sm-flex {
+  display: flex !important;
+}
+
+/* form input */
+input.form-inp {
+  outline: none;
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--inp-bord-clr);
+  border-radius: 4px;
+  color: var(--secondary);
+  padding-inline: 20px;
+}
+
+input.img-inp {
+  padding-inline: 20px;
+  margin-block: 1rem;
+}
+
+input.form-inp::placeholder {
+  color: hsl(227, 6%, 69%);
+}
+
+form input.form-inp {
+  margin-bottom: 1rem;
+}
+
+/* REstaurant Form */
+.form-500 {
+  width: min(100%, 500px);
+  margin-inline: auto;
+}
+
+form .radio-groups {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding-inline: 20px;
+}
+
+form .radio-inputs {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+form button[type="submit"].btn-accent {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+
+form button:disabled {
+  opacity: 0.75;
+}
+
+.form-error {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--error-bg);
+  margin-bottom: 10px;
+  padding-inline: 1rem;
+}
+
+form .suggestion, form .inp-error {
+  font-size: 14px;
+  margin-top: -14px;
+  margin-bottom: 1rem;
+  padding-inline: 1rem;
+  font-weight: 600;
+}
+form .suggestion{
+  color: var(--text-400);
+}
+
+form .inp-error {
+  color: var(--error-bg);
+}
+
+form input.form-inp.error {
+  border: 1px solid var(--error-bg) !important;
+}
+
+svg.veg {
+  fill: green;
+  border: 2px solid green;
+  padding: 2px;
+}
+
+svg.non-veg {
+  fill: red;
+}
+
+/* navs */
+.navigations ul {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 60px;
+}
+
+.navigations ul li a {
+  height: var(--hgt);
+  text-decoration: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.navigations ul li a.active span {
+  color: var(--app-accent);
+}
+.navigations ul li a.active span svg {
+  fill: var(--app-accent);
+}
+
+.navigations ul li a span {
+  display: inline-block;
+  color: var(--secondary);
+  transition: var(--trans-clr);
+  white-space: nowrap;
+}
+.navigations ul li a span svg {
+  fill: var(--secondary);
+  transition: var(--trans-fill);
+}
+
+@media (hover : hover) {
+  .navigations ul li:hover a span {
+    color: var(--app-accent);
+  }
+  .navigations ul li:hover a span svg {
+    fill: var(--app-accent);
+  }
+}
+
+@media screen and (max-width: 785px) {
+  .hidden-lg {
+    display: block !important;
+  }
+  .hidden-lg-flex {
+    display: flex !important;
+  }
+  .hidden-sm,
+  .hidden-sm-flex {
+    display: none !important;
+  }
+
+  .navigations {
+    background-color: var(--app-bg);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-inline: 1.25rem;
+    box-shadow: rgb(40 44 63 / 20%) 0px -15px 40px -20px;
+    z-index: 10;
+  }
+
+  .navigations ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .navigations ul li a {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .navigations ul li a.active span {
+    color: var(--secondary);
+  }
+  .navigations ul li a.active span svg {
+    fill: var(--secondary);
+  }
+
+  .navigations ul li a span {
+    color: var(--text-400);
+    font-size: 14px;
+  }
+  .navigations ul li a span svg {
+    fill: var(--text-400);
+  }
+}

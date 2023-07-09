@@ -1,0 +1,126 @@
+<ng-container *ngIf="!loading; else loader">
+    <div class="bg-style-2" *ngIf="(UserCart | async) as cart; else empty">
+        <div class="header">
+            <div class="container">
+                <a routerLink="/" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                      </svg>
+                </a>
+                <div class="restaurant">
+                    <h3 routerLink="/restaurants/{{cart.restaurant.slug}}">{{cart.restaurant.name}}</h3>
+                    <div class="info">
+                        <span class="items">{{cart.items_count}} items</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-2">
+            <div class="cart-items">
+                <ng-container *ngFor="let item of cart.cart_items">
+                    <div class="item">
+                        <div class="details">
+                            <div class="type">
+                                <svg *ngIf="item.cuisine.cuisine_type == 'Veg'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill veg" viewBox="0 0 16 16">
+                                    <circle cx="8" cy="8" r="8"/>
+                                </svg>
+                                <svg *ngIf="item.cuisine.cuisine_type == 'Non Veg'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-square non-veg" viewBox="0 0 16 16">
+                                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                    <path d="M3.544 10.705A.5.5 0 0 0 4 11h8a.5.5 0 0 0 .374-.832l-4-4.5a.5.5 0 0 0-.748 0l-4 4.5a.5.5 0 0 0-.082.537z"/>
+                                </svg>
+                            </div>
+                            <div class="name">{{item.cuisine.cuisine}}</div>
+                        </div>
+                        <div class="info">
+                            <div class="price">&#8377;{{item.cuisine.price}}</div>
+                            <div class="quantity">
+                               <span>x</span>
+                               <span>{{item.quantity}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        
+            <div class="bill">
+                <h5>Bill Details</h5>
+                <div class="item">
+                    <span>Item Total</span>
+                    <span>&#8377;{{cart.item_total}}</span>
+                </div>
+                <div class="delivery">
+                    <span>Delivery Fee</span>
+                    <span>&#8377;{{cart.delivery_fee}}</span>
+                </div>
+                <div class="total">
+                    <h4>To Pay</h4>
+                    <span>&#8377;{{cart.cart_total}}</span>
+                </div>
+            </div>
+
+            <div class="address">
+                <h5>Delivery Location:</h5>
+                <div>
+                    {{Userplace}}
+                </div>
+            </div>
+
+            <div class="loac-map">
+                <app-loc-map [lat]="Userlat" [lng]="Userlng" [zoom]="18" 
+                (UserLocation)="getCoordinates($event)" 
+                (UserPlace)="getPlace($event)"></app-loc-map>
+            </div>
+
+        </div>
+
+    
+        <div class="proceed-option">
+            <div class="container-2">
+                <ng-container *ngIf="!loogedIn">
+                    <h3>Almost there</h3>
+                    <p>Login or Signup up to continue</p>
+                    <button class="btn" (click)="modelOpened=true">Continue</button>
+                </ng-container>
+                <ng-container *ngIf="loogedIn">
+                    <button class="btn" (click)="placerOrder(cart.id)">Place Order</button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+    <div class="order-status" *ngIf="ordered">
+        <h2>Your order is completed.</h2>
+        <button routerLink="/profile" class="btn-accent">Track Order Status</button>
+    </div>
+
+    <app-model [opened]="modelOpened">
+        <div class="auth">
+            <ng-container *ngIf="authType == 'login'">
+                <h2>Login</h2>
+                <p>Not a user <span (click)="authType = 'signUp'">SignUp?</span></p>
+                <app-login [Guest]="false" [Reload]="false" (Authenticated)="LoggedIn($event)"></app-login>
+            </ng-container>
+            <ng-container *ngIf="authType == 'signUp'">
+                <h2>SignUp</h2>
+                <p>Already user <span (click)="authType = 'login'">Login?</span></p>
+                <app-user-signup [Reload]="false" (Created)="UserCreated($event)"></app-user-signup>
+            </ng-container>
+        </div>
+    </app-model>
+</ng-container>
+
+<ng-template #empty>
+    <div class="bg-style-2 empty-cart">
+        <div class="image">
+            <img src="/assets/images/cart.png" alt="">
+        </div>
+        <h2>Your cart is empty.</h2>
+        <button class="btn-accent" routerLink="/">Order Food</button>
+    </div>
+</ng-template>
+
+<ng-template #loader>
+    <div class="bg-style-2 loading">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+</ng-template>

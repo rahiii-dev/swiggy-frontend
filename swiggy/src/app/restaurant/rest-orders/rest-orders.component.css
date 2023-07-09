@@ -1,0 +1,41 @@
+.orders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-block: 1.25rem;
+}
+
+.orders .order{
+    width: min(100%, 500px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.125);
+    padding: 14px;
+}
+
+.order .order_status {
+    color: var(--text-400);
+    font-size: 14px;
+}
+
+.order .accept-options button{
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 2px;
+}
+
+.order .accept-options button.reject {
+    background-color: var(--error-bg);
+    color: var(--app-bg);
+}
+
+.loading{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

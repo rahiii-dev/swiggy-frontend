@@ -1,0 +1,15 @@
+<button class="btn" [class.updating]="loading"
+*ngIf="!isIncart" (click)="addTocart()">ADD</button>
+
+<button class="btn update-btn" *ngIf="isIncart" [class.updating]="loading">
+  <span (click)="changeQuantity('decrease')">-</span>
+  <span class="quantity">{{itemQuantity}}</span>
+  <span (click)="changeQuantity('increase')">+</span>
+</button>
+
+<app-model [opened]="modelClosed" (closed)="close($event)">
+  <div class="error">
+    {{error}}
+  </div>
+</app-model>
+

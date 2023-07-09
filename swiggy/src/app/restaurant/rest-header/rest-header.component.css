@@ -1,0 +1,36 @@
+.container-fluid {
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .col-left {
+    padding-left: 10px;
+  }
+
+  li.orders {
+    position: relative;
+  }
+
+  li.orders span.count{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 18px;
+    left: -3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+  }
+
+@media screen and (max-width: 785px) {
+  li.orders span.count{
+    top: 0;
+    left: 10px;
+  } 
+}

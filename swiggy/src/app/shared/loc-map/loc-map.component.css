@@ -1,0 +1,157 @@
+.map-container {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
+.map-container.fullScreen {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+}
+
+.map-frame {
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.175);
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 3px);
+  transform: translateY(-50%);
+  background-color: var(--app-bg);
+  color: black;
+  white-space: nowrap;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.map-container .map-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  padding: 10px;
+  background: var(--app-bg);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 500;
+}
+
+.map-container .satelite {
+  top: 50px;
+  left: 1rem;
+  border-radius: 50%;
+}
+
+.map-container .satelite.clicked {
+  color: hsl(120, 44%, 57%);
+}
+
+.map-container .detector {
+  bottom: 1rem;
+  left: 1rem;
+  color: var(--app-accent);
+  transition: var(--trans-clr);
+  border-radius: 50%;
+}
+
+.map-container .fullscreen {
+    bottom: 1.2rem;
+    right: 1rem;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.searchbox {
+  width: min(90%, 300px);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 550;
+  overflow: hidden;
+}
+
+.searchbox input {
+  outline: none;
+  border: none;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 100%;
+  height: 32px;
+  padding-inline: 10px;
+}
+
+.places {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.places button {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: var(--app-bg);
+  color: black;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+.places button:not(:last-child) {
+  border-bottom: 1px solid black;
+}
+
+
+.marker-location {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.2;
+    background-color: var(--app-bg);
+    transform: translateX(-50%);
+    border-radius: 4px;
+    z-index: 500;
+}
+
+.location .coordinates {
+    font-size: 10px;
+}
+
+.location .coordinates span {
+    margin-right: 5px;
+}
+
+.marker-location .btn-accent {
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+@media (hover: hover) {
+  .map-container .detector:hover {
+    color: black;
+  }
+
+  .map-container button:hover .tooltip {
+    display: block;
+  }
+}

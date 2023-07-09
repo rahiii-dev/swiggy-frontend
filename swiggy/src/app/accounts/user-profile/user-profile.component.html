@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="info">
+            <form [formGroup]="UserUpdateForm">
+                <div class="name">
+                    <input type="text" class="editable-inp"
+                    formControlName="full_name"
+                    [class.error]="UserUpdateForm.controls['full_name'].invalid && (UserUpdateForm.controls['full_name'].dirty || UserUpdateForm.controls['full_name'].touched)"
+                    [disabled]="inptDisabled"
+                    [style.width]="fullnameLength + 'ch'"
+                    (input)="changeWidth('full_name')"
+                    >
+                </div>
+                <div>
+                    <input type="text" class="editable-inp phone"
+                    [disabled]="inptDisabled"
+                    [class.error]="UserUpdateForm.controls['phone_no'].invalid && (UserUpdateForm.controls['phone_no'].dirty || UserUpdateForm.controls['phone_no'].touched)"
+                    formControlName="phone_no"
+                    >
+                    <input type="email" class="editable-inp"
+                    [disabled]="inptDisabled"
+                    [class.error]="UserUpdateForm.controls['email'].invalid && (UserUpdateForm.controls['email'].dirty || UserUpdateForm.controls['email'].touched)"
+                    formControlName="email"
+                    [style.width]="emailLength + 'ch'"
+                    (input)="changeWidth('email')"
+                    >
+                </div>
+
+                <div class="form-error" *ngIf="formError">
+                    {{formError}}
+                </div>
+            </form>
+
+            <div class="btns">
+                <div *ngIf="inptDisabled">
+                    <button class="btn btn-edit" (click)="enableForm()">Edit Profile</button>
+                </div>
+                
+                <div *ngIf="!inptDisabled">
+                    <button class="btn btn-edit" [disabled]="UserUpdateForm.invalid" (click)="SubmitForm()">Save</button>
+                    <button class="btn btn-edit" (click)="UpdateForm()">Cancel</button>
+                </div>
+                <div>
+                    <button class="btn btn-logout" (click)="logout()">Logout</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="content">
+            <ng-container *ngIf="Usertype == 'user'">
+                <h2>My Orders</h2>
+                <ng-container *ngIf="(UserOrders | async) as orders">
+                    <div class="orders">
+                        <ng-container *ngFor="let order of orders.data">
+                            <div class="order">
+                                <h3>{{order.restaurant}}</h3>
+                                <div class="ordered_items">
+                                    <ng-container *ngFor="let item of order.order">
+                                        <div class="item">{{item.ordered_item}}</div>
+                                    </ng-container>
+                                </div>
+                                <div class="order_status">
+                                    <span>{{order.order_status}}</span>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

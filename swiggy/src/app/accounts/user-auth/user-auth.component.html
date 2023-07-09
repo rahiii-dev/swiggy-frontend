@@ -1,0 +1,70 @@
+<div class="container">
+  <ng-container *ngIf="authtype == 'login'">
+    <h2>Login</h2>
+    <p>or <span (click)="navigate('signup')">create an account</span></p>
+    <div class="wrapper">
+      <app-login></app-login>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="authtype == 'signup'">
+    <h2>Signup</h2>
+    <p>or <span (click)="navigate('login')">login to your account</span></p>
+
+    <div class="wrapper">
+      <div class="partner-options">
+        <ng-container *ngIf="type == 'user'">
+          <h4>Partner With Us</h4>
+          <div class="options">
+            <button class="btn" (click)="changeType('restaurant')">
+              Restaurant
+            </button>
+            <button class="btn" (click)="changeType('delivery')">
+              Delivery
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="type != 'user'">
+          <h4>Partnering for <span>{{type}}</span></h4>
+          <div class="options">
+            <button class="btn cancel" (click)="changeType('user')">
+              Cancel
+            </button>
+          </div>
+        </ng-container>
+      </div>
+      <app-user-signup [signupFor]="type"></app-user-signup>
+    </div>
+
+    <!-- <ng-container *ngIf="type=='user'">
+        <div class="wrapper">
+            <div class="partner-options">
+                <h4>Partner With Us</h4>
+                <div class="options">
+                    <button class="btn" (click)="changeType('restaurant')">Restaurant</button>
+                    <button class="btn" (click)="changeType('delivery')">Delivery</button>
+                </div>
+            </div>
+            <app-user-signup></app-user-signup>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="type=='restaurant'">
+        <div class="wrapper">
+            <div class="partner-options">
+                <button class="btn cancel" (click)="changeType('user')">Cancel</button>
+            </div>
+            <app-restaurant-signup></app-restaurant-signup>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="type=='delivery'">
+        <div class="wrapper">
+            <div class="partner-options">
+                <button class="btn cancel" (click)="changeType('user')">Cancel</button>
+            </div>
+            <app-delivery-signup></app-delivery-signup>
+        </div>
+    </ng-container> -->
+  </ng-container>
+</div>

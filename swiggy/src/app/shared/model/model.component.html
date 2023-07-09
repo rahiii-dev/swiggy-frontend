@@ -1,0 +1,8 @@
+<div class="model-container" [class.hide]="!opened">
+    <div class="model-content">
+        <div class="control">
+            <button class="btn" (click)="CloseModel()">X</button>
+        </div>
+        <ng-content></ng-content>
+    </div>
+</div>

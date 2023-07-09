@@ -1,0 +1,37 @@
+<ng-container *ngIf="!loading; else loader">
+    <ng-container *ngIf="(Myorders | async) as orders">
+        <div class="container" *ngIf="orders.data.length > 0; no_orders">
+            <div class="orders">
+            <ng-container *ngFor="let order of orders.data">
+                  <div class="order">
+                      <div>
+                        <h3>{{ order.user }}</h3>
+                        <div class="ordered_items">
+                          <ng-container *ngFor="let item of order.order">
+                            <div class="item">{{item.ordered_item}}</div>
+                          </ng-container>
+                        </div>
+                        <div class="order_status"><span>Status: </span> <span>{{order.order_status}}</span></div>
+                      </div>
+                  
+                      <div class="accept-options" *ngIf="order.order_acccepted == false">
+                          <button class="btn-accent" (click)="acceptOrder(order.id)">Accept</button>
+                      </div>
+                  </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+
+<ng-template #no_orders>
+    <div class="conatiner">
+        <h2>No Orders Yet.</h2>
+    </div>
+</ng-template>
+
+<ng-template #loader>
+    <div class="container loading">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+</ng-template>

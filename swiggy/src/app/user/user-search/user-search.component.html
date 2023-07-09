@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="form-div">
+    <form>
+      <input class="form-inp" type="text" placeholder="Search for food and restaurant" />
+      <button type="submit" class="btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-search"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+          />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <div class="cuisines" [hidden]="true">
+    <h3>Pospular Cuisines</h3>
+    <div class="cuisine-list">
+        <div class="cuisine">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwyNjg1NTY3Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60" alt="cuisine">
+            </div>
+            <div class="name">Biriyani</div>
+        </div>
+        <div class="cuisine">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwyNjg1NTY3Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60" alt="cuisine">
+            </div>
+            <div class="name">Biriyani</div>
+        </div>
+        <div class="cuisine">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwyNjg1NTY3Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60" alt="cuisine">
+            </div>
+            <div class="name">Biriyani</div>
+        </div>
+        <div class="cuisine">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwyNjg1NTY3Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60" alt="cuisine">
+            </div>
+            <div class="name">Biriyani</div>
+        </div>
+    </div>
+  </div>
+
+  <div class="result-list">
+    <ng-container *ngFor="let item of [1,2,3,4,1,1,1,1,1,1]">
+        <div class="result">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwyNjg1NTY3Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60" alt="cuisine">
+            </div>
+            <div class="info">
+                <div class="name">Biriyani</div>
+                <div class="type">Dish</div>
+            </div>
+        </div>
+    </ng-container>
+  </div>
+</div>

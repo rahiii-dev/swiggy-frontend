@@ -1,0 +1,184 @@
+.header {
+  margin-bottom: 1rem;
+  background-color: var(--app-bg);
+  position: sticky;
+  top: 0;
+}
+
+.header .container {
+  display: flex;
+  flex-flow: row nowrap;
+  padding-block: 10px;
+}
+
+.header .btn {
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary);
+  padding-inline: 10px;
+}
+
+.header .restaurant {
+  line-height: 1.2;
+}
+.header .restaurant h3 {
+  cursor: pointer;
+  transition: var(--trans-clr);
+}
+.header .restaurant .info {
+  color: var(--text-500);
+  font-size: 14px;
+}
+
+.container-2 {
+  width: min(600px, 100%);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  overflow-x: hidden;
+}
+
+.cart-items {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 1rem;
+  gap: 10px;
+}
+
+.cart-items .item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--app-bg);
+}
+
+.cart-items .item .details,
+.cart-items .item .info {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.cart-items .item .info .quantity span:first-child {
+  color: var(--text-400);
+  margin-right: 5px;
+}
+
+.bill, .address {
+  background-color: var(--app-bg);
+  padding: 10px;
+  margin-bottom: 1rem;
+}
+
+.bill > div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.bill .total {
+  border-top: 1px dotted;
+  margin-bottom: 0;
+  padding-top: 5px;
+  font-weight: 600;
+}
+
+.loac-map {
+  max-width: 100%;
+  overflow: hidden;
+  margin-bottom: 160px;
+}
+
+
+.proceed-option {
+  background-color: var(--app-bg);
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  padding-block: 1rem;
+  line-height: 1.2;
+  z-index: 1000;
+}
+
+.proceed-option p {
+  font-size: 14px;
+  color: var(--text-500);
+  margin-bottom: 14px;
+}
+
+.proceed-option .btn {
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  background-color: var(--app-accent);
+  color: var(--app-bg);
+}
+
+.order-status {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--app-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1300;
+}
+.order-status .btn-accent{
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-cart .image {
+  max-width: 500px;
+}
+
+.empty-cart h2 {
+  margin-top: -30px;
+  margin-bottom: 10px;
+}
+
+.empty-cart > button {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+.auth p {
+  color: var(--text-400);
+}
+.auth p span{
+  cursor: pointer;
+  color: var(--app-accent);
+}
+
+@media (hover : hover){
+  .header .restaurant h3:hover {
+    color: var(--app-accent);
+  }
+
+}

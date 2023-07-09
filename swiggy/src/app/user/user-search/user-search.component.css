@@ -1,0 +1,96 @@
+.container {
+    max-width: 800px;
+    padding-bottom: 2rem;
+}
+
+.form-div {
+    --gap: 2.5rem;
+    position: sticky;
+    top: 0;
+    padding-block: var(--gap);
+}
+.container form {
+    position: relative;
+}
+
+.container form button {
+    height: 50px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-inline: 1rem;
+    background: transparent;
+    color: var(--text-500);
+}
+
+.cuisines {
+    margin-bottom: 1rem;
+}
+
+.cuisine-list {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.cuisine-list .cuisine .image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid var(--text-500);
+    overflow: hidden;
+}
+
+.cuisine-list .cuisine .name {
+    color: var(--text-500);
+    font-size: 10px;
+    text-align: center;
+}
+
+.result-list {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.result-list::-webkit-scrollbar {
+    display: none;
+}
+
+.result-list .result {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 1rem;
+    transition: var(--trans-bg);
+}
+
+.result-list .result .image {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.cuisine-list .cuisine .image img, .result-list .result .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.result-list .result .info .type {
+    font-size: 14px;
+    color: var(--text-500);
+}
+
+@media (hover : hover) {
+    .result-list .result:hover {
+        background-color: hsl(0, 0%, 95%);
+    }
+}

@@ -1,0 +1,111 @@
+<ng-container *ngIf="!rest$.isLoading; else loading">
+  <ng-container *ngIf="(rest$.nearRest$ | async) as Rest">
+  <ng-container *ngIf="Rest.length > 0; else noRest">
+    <div class="container">
+      <div class="header">
+        <div class="rest-count hidden-sm">
+          <h2>{{ Rest.length }} Restaurants</h2>
+        </div>
+
+        <div class="rest-near hidden-lg">
+          <h3>All Restaurants Nearby</h3>
+          <h6>Discover unique taste near you</h6>
+        </div>
+        <div class="res-filters">
+          <button
+            class="btn"
+            [class.active]="rest$.restOrder  == 'relavance'"
+            (click)="rest$.changeOrder('relavance')"
+          >
+            Relavance
+          </button>
+          <!-- <button
+            class="btn"
+            [class.active]="filter == 'delivery'"
+            (click)="filterRes('delivery')"
+          >
+            Delivery Time
+          </button> -->
+          <button
+            class="btn"
+            [class.active]="rest$.restOrder == 'rating'"
+            (click)="rest$.changeOrder('rating')"
+          >
+            Rating
+          </button>
+          <!-- <button
+            class="btn"
+            [class.active]="filter == 'costLH'"
+            (click)="filterRes('costLH')"
+          >
+            Cost: Low To High
+          </button>
+          <button
+            class="btn"
+            [class.active]="filter == 'costHL'"
+            (click)="filterRes('costHL')"
+          >
+            Cost: High To Low
+          </button> -->
+        </div>
+      </div>
+    </div>
+    <div id="nearby-res">
+      <div class="container">
+        <ng-container *ngFor="let rest of Rest">
+          <div class="res-card" [routerLink]="['restaurants', rest.slug]">
+            <div class="image">
+              <img [src]="rest.image" alt="{{ rest.name }}" loading="lazy" />
+            </div>
+            <div class="details">
+              <div class="name">{{ rest.name }}</div>
+              <div class="cuisines">{{rest.specials}}</div>
+              <div class="infos">
+                <div class="rating" [ngClass]="{
+                  'zero': rest.rating == 0,
+                  'low': (rest.rating > 0)  && (rest.rating < 2.5),
+                  'med': rest.rating == 2.5,
+                  'high': (rest.rating > 2.5) 
+                }">
+                  <span
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      fill="currentColor"
+                      class="bi bi-star-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                      /></svg
+                  ></span>
+                  <span>{{ rest.rating }}</span>
+                </div>
+                <!-- <div class="dlvr-time">{{rest.ETA.duration.text}}</div> -->
+              </div>
+              <div class="view">VIEW</div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-template #noRest>
+  <div class="container">
+    <div class="no-res">
+      <h1>No Restaurants Nearby..</h1>
+      <h3>(Please try different location)</h3>
+      <div class="image">
+        <img src="assets/images/rest-not-registered.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <app-rest-list-loading></app-rest-list-loading>
+</ng-template>

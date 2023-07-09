@@ -1,0 +1,219 @@
+.row {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+}
+
+.row .col-left {
+  width: 100%;
+  height: 100%;
+  padding-inline: 60px;
+  padding-block: 40px;
+  position: relative;
+}
+
+/* header */
+.row .col-left .header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row .col-left .header .logo {
+  color: var(--app-accent);
+}
+
+.row .col-left .header .authent button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  height: 40px;
+  padding-inline: 28px;
+  font-weight: 600;
+}
+
+.row .col-left .header .authent #login {
+  background-color: transparent;
+    transition: color 350ms ease;
+  /* background-color: var(--secondary);
+  color: var(--app-bg); */
+}
+
+.row .col-left .header .authent #signup {
+    background-color: var(--secondary);
+    color: var(--app-bg);
+  }
+
+/* body */
+.row .col-left .body {
+  margin-top: 70px;
+}
+
+.row .col-left .body .title {
+  margin-bottom: 2rem;
+}
+
+.row .col-left .body .title h1 {
+  margin-bottom: 0.5rem;
+}
+.row .col-left .body .title h3 {
+  color: var(--text-500);
+  font-weight: 500;
+}
+
+/* form location */
+#loc-form {
+  --h: 48px;
+  height: var(--h);
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+#loc-form .ghlss {
+  border: 1px solid var(--text-400);
+  width: 100%;
+  position: relative;
+}
+#loc-form .ghlss #loc-inp {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding-inline: 1rem;
+}
+
+#loc-form .ghlss #loc-inp::placeholder {
+  color: var(--text-400);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#loc-form button[type="submit"] {
+  cursor: pointer;
+  display: block;
+  border: none;
+  outline: none;
+  background-color: var(--app-accent);
+  color: var(--app-bg);
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0 28px;
+}
+
+#loc-form .ghlss #find_loc {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  font-size: 14px;
+  background: var(--app-bg);
+  padding: 5px 10px;
+  color: var(--text-900);
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  transition: background 350ms ease;
+  z-index: 1;
+}
+
+#place_suggestion {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+#place_suggestion > button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  padding-inline: 1rem;
+  background: var(--app-bg);
+  transition: background 350ms ease;
+}
+#place_suggestion > button:not(:last-child) {
+  border-bottom: 1px dotted var(--text-400);
+}
+
+.row .col-right {
+  min-width: 45vw;
+  max-width: 600px;
+  /* background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=481&q=80'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+}
+
+#loc-form .input-error {
+  background-color: var(--error-bg);
+  color: var(--app-bg);
+  width: 100%;
+  position: absolute;
+  top: calc(var(--h) + 10px);
+  padding: 1rem;
+}
+
+@media (hover: hover) {
+  .row .col-left .header .authent #login:hover {
+      color: var(--app-accent);
+    }
+
+  #loc-form .ghlss #find_loc:hover,
+  #place_suggestion > button:hover {
+    background-color: hsl(0, 0%, 95%);
+  }
+}
+
+@media screen and (max-width: 950px) {
+  #login,
+  .row .col-left .body .title h1,
+  .row .col-left .body .title h3 {
+    color: var(--app-bg);
+  }
+  .row {
+    position: relative;
+  }
+  .row .col-right {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .row .col-right::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: black;
+    opacity: 0.5;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  #loc-form {
+    --h: 40px;
+    flex-direction: column;
+    height: auto;
+    gap: 0.65rem;
+  }
+  #loc-form .ghlss #loc-inp {
+    height: var(--h);
+  }
+  #loc-form button[type="submit"] {
+    height: var(--h);
+  }
+  #loc-form .input-error {
+    top: calc((var(--h) * 2) + 1.4rem);
+  }
+}

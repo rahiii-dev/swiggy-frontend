@@ -1,0 +1,111 @@
+.rest-info {
+  background-color: var(--secondary);
+  color: var(--app-bg);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.rest-info .container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  gap: 2.25rem;
+  padding-block: 2rem;
+}
+
+.rest-info .container .image {
+  width: 260px;
+  height: 165px;
+  overflow: hidden;
+}
+.rest-info .container .image img,
+.prd .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.details .cuisine {
+  font-weight: normal;
+  color: var(--text-500);
+}
+
+.details .location {
+  color: var(--text-500);
+}
+
+.details .other-info {
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: 1.25rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.details .other-info .rating,
+.details .filters button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.details .other-info .working-hours {
+  font-size: 14px;
+  color: var(--text-400);
+}
+
+.details .filters button {
+  cursor: pointer;
+  padding: 5px;
+  transition: var(--trans-clr);
+}
+
+.menu {
+  width: min(100%, 700px);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  padding-top: 1rem;
+  padding-bottom: 3.2rem;
+}
+
+.menu .prd {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding-block: 2rem;
+}
+
+.prd .details .price {
+  font-size: 14px;
+}
+.prd .details .extra-info {
+  font-size: 14px;
+  color: var(--text-400);
+  margin-top: 1rem;
+}
+
+.prd .image {
+  width: 118px;
+  height: 96px;
+  position: relative;
+}
+.prd .image img {
+  border-radius: 8px;
+}
+
+@media (hover: hover) {
+  .details .filters button:hover {
+    color: rgb(28, 219, 28);
+  }
+}
+
+@media screen and (max-width: 785px) {
+  .rest-info {
+    background-color: rgb(52, 52, 52);
+  }
+}

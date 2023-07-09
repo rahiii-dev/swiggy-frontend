@@ -1,0 +1,145 @@
+<div class="container">
+  <h2>Restaurant Resgister</h2>
+  <div class="steps">
+    <div class="step step-1" [class.completed]="step == 1 || stepOne">1</div>
+    <div class="step step-2" [class.completed]="step == 2 || stepTwo">2</div>
+    <div class="step step-3" [class.completed]="step == 3 || stepThree">3</div>
+  </div>
+  <div class="content">
+    <ng-container *ngIf="step == 1">
+      <h3>Please select your Restaurant location:</h3>
+      <app-loc-map (UserLocation)="getUserLocation($event)" (GetMap)="getMap($event)"></app-loc-map>
+      <div class="complete-btn">
+        <button class="btn-accent" (click)="nextStep()">Next</button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="step == 2">
+      <h3>Enter your restaurant details:</h3>
+      <form [formGroup]="RestForm" class="form-500" (ngSubmit)="RestFormSubmit()">
+
+        <input type="text"
+          placeholder="Restaurant Name*" class="form-inp"
+          [class.error]="RestForm.controls['name'].invalid && (RestForm.controls['name'].dirty || RestForm.controls['name'].touched)"
+          formControlName="name" 
+        />
+        <ng-container *ngIf="RestForm.controls['name'].invalid && (RestForm.controls['name'].dirty || RestForm.controls['name'].touched)">
+          <div class="inp-error" *ngIf="RestForm.controls['name'].errors?.['required']">
+            Restaurant Name is required.
+          </div>
+          <div class="inp-error" *ngIf="RestForm.controls['name'].errors?.['minlength']">
+            Required minimum 3.
+          </div>
+        </ng-container>
+
+        <input type="text"
+          placeholder="Restaurant Address*" class="form-inp"
+          [class.error]="RestForm.controls['address'].invalid && (RestForm.controls['address'].dirty || RestForm.controls['address'].touched)"
+          formControlName="address" 
+        />
+        <ng-container *ngIf="RestForm.controls['address'].invalid && (RestForm.controls['address'].dirty || RestForm.controls['address'].touched)">
+          <div class="inp-error" *ngIf="RestForm.controls['address'].errors?.['required']">
+            Restaurant special is required.
+          </div>
+          <div class="inp-error" *ngIf="RestForm.controls['specials'].errors?.['minlength']">
+            Required minimum 3.
+          </div>
+        </ng-container>
+
+        <input type="text"
+          placeholder="Restaurant Specials*" class="form-inp"
+          [class.error]="RestForm.controls['specials'].invalid && (RestForm.controls['specials'].dirty || RestForm.controls['specials'].touched)"
+          formControlName="specials" 
+        />
+        <div class="suggestion">egs: Burgers, North Indian</div>
+        <ng-container *ngIf="RestForm.controls['specials'].invalid && (RestForm.controls['specials'].dirty || RestForm.controls['specials'].touched)">
+          <div class="inp-error" *ngIf="RestForm.controls['specials'].errors?.['required']">
+            Restaurant Address is required.
+          </div>
+          <div class="inp-error" *ngIf="RestForm.controls['address'].errors?.['minlength']">
+            Required minimum 3.
+          </div>
+        </ng-container>
+
+        <input type="text"
+          placeholder="Slug to identify your restaurant*" class="form-inp"
+          [class.error]="RestForm.controls['slug'].invalid && (RestForm.controls['slug'].dirty || RestForm.controls['slug'].touched)"
+          formControlName="slug" 
+        />
+        <div class="suggestion">egs: KFC-KANNUR</div>
+        <ng-container *ngIf="RestForm.controls['slug'].invalid && (RestForm.controls['slug'].dirty || RestForm.controls['slug'].touched)">
+          <div class="inp-error" *ngIf="RestForm.controls['slug'].errors?.['required']">
+            Slug is required.
+          </div>
+          <div class="inp-error" *ngIf="RestForm.controls['slug'].errors?.['SlugExists']">
+            Slug is alredy in use.
+          </div>
+          <div class="inp-error" *ngIf="RestForm.controls['slug'].errors?.['minlength']">
+            Required minimum 3.
+          </div>
+        </ng-container>
+        
+        <input type="time"
+          placeholder="Opening time*" class="form-inp"
+          min="00:00" max="23:59"
+          [class.error]="RestForm.controls['opens_at'].invalid && (RestForm.controls['opens_at'].dirty || RestForm.controls['opens_at'].touched)"
+          formControlName="opens_at" 
+        />
+        <div class="suggestion">Restaurant Opening Time</div>
+        <ng-container *ngIf="RestForm.controls['opens_at'].invalid && (RestForm.controls['opens_at'].dirty || RestForm.controls['opens_at'].touched)">
+          <div class="inp-error" *ngIf="RestForm.controls['opens_at'].errors?.['required']">
+            Opening time is required.
+          </div>
+        </ng-container>
+
+        <input type="time"
+          placeholder="Closing time*" class="form-inp"
+          min="00:00" max="23:59"
+          [class.error]="RestForm.controls['closes_at'].invalid && (RestForm.controls['closes_at'].dirty || RestForm.controls['closes_at'].touched)"
+          formControlName="closes_at" 
+        />
+        <div class="suggestion">Restaurant Closing Time</div>
+        <ng-container *ngIf="RestForm.controls['closes_at'].invalid && (RestForm.controls['closes_at'].dirty || RestForm.controls['closes_at'].touched)">
+          <div class="inp-error" *ngIf="RestForm.controls['closes_at'].errors?.['required']">
+            Closing time is required.
+          </div>
+        </ng-container>
+
+
+        <input type="file"
+          placeholder="Restaurant Name*" class="img-inp"
+          [class.error]="RestForm.controls['image'].invalid && (RestForm.controls['image'].dirty || RestForm.controls['image'].touched)"
+          formControlName="image" 
+          (change)="onRestFileChange($event)"
+        />
+        <div class="suggestion">Restaurant Image</div>
+        <ng-container *ngIf="RestForm.controls['image'].invalid && (RestForm.controls['image'].dirty || RestForm.controls['image'].touched)">
+          <div class="inp-error" *ngIf="RestForm.controls['image'].errors?.['required']">
+            Restaurant Image is required.
+          </div>
+        </ng-container>
+
+
+        <button type="submit" class="btn-accent" [disabled]="!RestForm.valid">
+          Continue
+        </button>
+
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="step == 3">
+      <h3>Add your restaurant cuisines:</h3>
+      <app-rest-cuisine-form></app-rest-cuisine-form>
+      <div class="complete-btn">
+        <button class="btn-accent" routerLink="/">Completed</button>
+      </div>
+    </ng-container>
+
+  </div>
+  <div class="result" *ngIf="result">
+    {{ result }}
+  </div>
+  <div class="error-div">
+    {{ formError }}
+  </div>
+</div>

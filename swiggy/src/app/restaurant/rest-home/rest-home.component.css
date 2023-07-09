@@ -1,0 +1,187 @@
+.rest-info {
+  background-color: var(--secondary);
+  color: var(--app-bg);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.rest-info .container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  gap: 2.25rem;
+  padding-block: 2rem;
+}
+
+.rest-info .container .image {
+  width: 260px;
+  height: 165px;
+  overflow: hidden;
+}
+.rest-info .container .image img,
+.prd .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.details .cuisine {
+  font-weight: normal;
+  color: var(--text-500);
+}
+
+.details .location {
+  color: var(--text-500);
+}
+
+.details .other-info {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.details .other-info .rating {
+  font-size: 1.25rem;
+}
+.details .other-info .working-hours {
+  font-size: 14px;
+  color: var(--text-400);
+}
+
+.details .other-info .rating,
+.details .filters button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.details .filters button {
+  cursor: pointer;
+  padding: 5px;
+  transition: var(--trans-clr);
+}
+
+.details .filters button.checked svg {
+  fill: rgb(28, 219, 28);
+}
+
+.menu {
+  width: min(100%, 740px);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  padding-top: 1rem;
+  padding-bottom: 3.2rem;
+}
+
+.menu .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.menu .header .add-btn {
+  cursor: pointer;
+  height: 34px;
+  background-color: var(--app-bg);
+  color: rgb(96, 178, 70);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  padding: 5px 10px;
+}
+
+.menu .prd {
+  cursor: pointer;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding-block: 2rem;
+  padding-inline: 20px;
+  border-radius: 8px;
+  transition: var(--trans-bg);
+  position: relative;
+}
+
+.prd .dlt-btn {
+  cursor: pointer;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  color: red;
+  padding-inline: 5px;
+  opacity: 0;
+  transition: var(--trans-op);
+  z-index: 10;
+}
+
+.prd .details .price {
+  font-size: 14px;
+}
+.prd .details .extra-info {
+  font-size: 14px;
+  color: var(--text-400);
+  margin-top: 1rem;
+}
+
+.prd .image {
+  width: 118px;
+  height: 96px;
+  position: relative;
+}
+.prd .image img {
+  border-radius: 8px;
+}
+
+/* not-found */
+.not-found {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+}
+.not-found .message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+.not-found .message button {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.not-found .image {
+  width: min(100%, 500px);
+}
+
+@media (hover: hover) {
+  .details .filters button:hover {
+    color: rgb(28, 219, 28);
+  }
+
+  .menu .prd:hover {
+    background-color: hsl(0, 0%, 96%);
+  }
+
+  .prd:hover .dlt-btn {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+@media screen and (max-width: 785px) {
+  .rest-info {
+    background-color: rgb(52, 52, 52);
+  }
+  .not-found {
+    flex-direction: column-reverse;
+  } 
+  .not-found .message {
+    align-items: center;
+  }
+}

@@ -1,0 +1,63 @@
+.container {
+  padding-block: 1.5rem;
+}
+
+.container p {
+  color: var(--text-400);
+  margin-bottom: 2rem;
+}
+
+.container p span {
+  color: var(--app-accent);
+  cursor: pointer;
+}
+
+.wrapper {
+  width: min(100%, 500px);
+  margin-inline: auto;
+}
+
+.partner-options {
+  width: 100%;
+  min-height: 40px;
+  position: relative;
+  margin-bottom: 1rem;
+}
+.partner-options h4 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.partner-options h4 span {
+  text-transform: capitalize;
+  border-bottom: 3px solid var(--app-accent);
+}
+
+.partner-options .options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.partner-options .options button,
+.partner-options button.cancel {
+  cursor: pointer;
+  padding: 5px 15px;
+  border: 2px solid var(--app-accent);
+  background: var(--app-accent);
+  color: var(--app-bg);
+  transition: var(--trans-bg);
+}
+
+.partner-options button.cancel {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media (hover: hover) {
+  .partner-options .options button:hover,
+  .partner-options button.cancel:hover {
+    color: var(--app-accent);
+    background: transparent;
+  }
+}
