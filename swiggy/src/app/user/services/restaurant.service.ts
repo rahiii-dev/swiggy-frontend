@@ -34,7 +34,8 @@ export class RestaurantService {
           next: data => {
             if(data) {
               this.geoid = data
-              this.http.get<RestaurantInterface>(`api/restaurant/?geoId=${data}`)
+              // https://rahidev.pythonanywhere.com/api/restaurant/?geoId=123
+              this.http.get<RestaurantInterface>(`/api/restaurant/?geoId=${data}`)
               .subscribe(
                 (data) => {
                   this.Rest.next(data)
