@@ -39,8 +39,8 @@ export class UserCartComponent implements OnInit {
     this.loogedIn = this.auth$.isLoggedIn()
 
     this.UserCart = this.cart$.getUserCart()
-    this.cart$.getUserCart().subscribe(data =>{ 
-      if(data.id){
+    this.cart$.getUserCart().subscribe(data =>{
+      if(data){
         this.cartID = data.id
       }
       this.loading=false
