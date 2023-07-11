@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkswiggy=self.webpackChunkswiggy||[]).push([[592],{8149:(t,u,n)=>{n.d(u,{j:()=>_});var a=n(6895),o=n(433),s=n(8274);class _{}_.\u0275fac=function(l){return new(l||_)},_.\u0275mod=s.oAB({type:_}),_.\u0275inj=s.cJS({imports:[a.ez,o.u5,o.UX]})}}]);
