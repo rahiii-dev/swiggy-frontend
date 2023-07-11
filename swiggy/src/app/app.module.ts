@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { BackendErrorInterceptor } from './shared/interceptors/backend-error.interceptor';
 import { BackenAPIInterceptor } from './shared/interceptors/backen-api.interceptor';
 import { POSITION_OPTIONS } from '@ng-web-apis/geolocation';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { POSITION_OPTIONS } from '@ng-web-apis/geolocation';
     ReactiveFormsModule
   ],
   providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     CookieService,
     {
       provide: POSITION_OPTIONS,
