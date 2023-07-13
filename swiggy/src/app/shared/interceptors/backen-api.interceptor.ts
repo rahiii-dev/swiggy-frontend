@@ -27,6 +27,7 @@ export class BackenAPIInterceptor implements HttpInterceptor {
     if (request.url.includes('/api')) {
       modifiedUrl = request.url.replace('/api/', 'https://rahidev.pythonanywhere.com/api/');
     }
+
     
     if(this.Auth$.isLoggedIn()){
       if (request.url.includes('/api')) {
@@ -39,6 +40,6 @@ export class BackenAPIInterceptor implements HttpInterceptor {
       }
     }
 
-    return next.handle(request);
+    return next.handle(request.clone({ url: modifiedUrl}));
   }
 }

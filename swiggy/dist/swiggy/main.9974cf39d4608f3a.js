@@ -1311,7 +1311,9 @@ class BackenAPIInterceptor {
         return next.handle(authReq);
       }
     }
-    return next.handle(request);
+    return next.handle(request.clone({
+      url: modifiedUrl
+    }));
   }
 }
 BackenAPIInterceptor.ɵfac = function BackenAPIInterceptor_Factory(t) {
