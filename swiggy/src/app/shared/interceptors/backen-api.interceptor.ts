@@ -22,15 +22,23 @@ export class BackenAPIInterceptor implements HttpInterceptor {
         return next.handle(authReq)
       }
     
+    // Modify the request URL
+    let modifiedUrl = request.url;
+    if (request.url.includes('/api')) {
+      modifiedUrl = request.url.replace('/api/', 'https://rahidev.pythonanywhere.com/api/');
+    }
+
     if(this.Auth$.isLoggedIn()){
       if (request.url.includes('/api')) {
         const authReq = request.clone({
+          url: modifiedUrl,
           headers: request.headers.set('Authorization', `Token ${this.Auth$.getAuthorizationToken()}`)
         });
+
         return next.handle(authReq)
       }
     }
 
-    return next.handle(request);
+    return next.handle(request.clone({ url: modifiedUrl}));
   }
 }

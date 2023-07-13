@@ -18,13 +18,6 @@ export class BackendErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
 
-        if (error.status > 400 && error.status < 500){
-          console.log("CLIENT-SIDE-ERROR:")
-          return throwError({
-            message: "Please try after some time."
-          })
-        }
-
         if (error.error instanceof ErrorEvent) {
 
           // A client-side or network error occurred. Handle it accordingly.

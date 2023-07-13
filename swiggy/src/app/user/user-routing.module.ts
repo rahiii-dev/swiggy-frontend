@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ActivatedRouteSnapshot, Route, RouterModule, RouterStateSnapshot, Routes, UrlSegment } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { UserProfileComponent } from '../accounts/user-profile/user-profile.component';
