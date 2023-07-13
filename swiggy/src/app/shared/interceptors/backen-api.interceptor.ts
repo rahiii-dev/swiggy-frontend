@@ -28,7 +28,6 @@ export class BackenAPIInterceptor implements HttpInterceptor {
       modifiedUrl = request.url.replace('/api/', 'https://rahidev.pythonanywhere.com/api/');
     }
 
-    
     if(this.Auth$.isLoggedIn()){
       if (request.url.includes('/api')) {
         const authReq = request.clone({
